@@ -35,6 +35,28 @@ def top_three(file_):
     print(sorted_array[1]) 
     print(sorted_array[2]) 
 
+def least_cars(file_):
+    # prints the cars with the least total in 1.5hrs | void
+    min_value = 99999999999999999999999999999999999999999
+    min_array = []
+    lines_array = file_.readlines()
+    for x in range(len(lines_array)):
+        if x < len(lines_array) - 3:
+            line_a_array = lines_array[x].split()
+            line_b_array = lines_array[x+1].split()
+            line_c_array = lines_array[x+2].split()
+            line_a_count = int(line_a_array[len(line_a_array) - 1])
+            line_b_count = int(line_b_array[len(line_b_array) - 1])
+            line_c_count = int(line_c_array[len(line_c_array) - 1])
+            count_sum = line_a_count + line_b_count + line_c_count 
+            if count_sum < min_value:
+                min_value = count_sum
+                min_array = [lines_array[x], lines_array[x+1], lines_array[x+2]]
+        else:
+            break
+    for line in min_array:
+        print(line)
+
 def main():
     # main function to run | void
     print_stars()
@@ -47,6 +69,9 @@ def main():
     print_stars()
     with open("input.txt", "r") as f:
         top_three(f)
+    print_stars()
+    with open("input.txt", "r") as f:
+        least_cars(f)
     print_stars()
 main()
 
