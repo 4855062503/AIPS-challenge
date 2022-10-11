@@ -68,7 +68,7 @@ def least_cars(file_name):
         return return_str
 
 def main():
-    # main function to run | str
+    # main function to run | void
     print_stars()
     total = count_all("input.txt")
     print("total is {0}\n".format(total))
