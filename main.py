@@ -18,14 +18,19 @@ def count_all(file_name):
 
 def return_dates(file_name):
     # returns all dates + count | str
+    dates_dict = {}
     return_str = ""
     with open(file_name, "r") as file_:
         for line in file_:
             line_array_date = line.split('T')
             date = line_array_date[0]
             line_array_count = line.split()
-            count = int(line_array_count[len(line_array_count) -1])
-            return_str += "{0} {1}\n".format(date, count)
+            if date not in dates_dict.keys():
+                dates_dict["{0}".format(date)] = int(line_array_count[len(line_array_count) -1])
+            else:
+                dates_dict["{0}".format(date)] += int(line_array_count[len(line_array_count) -1])
+        for key in dates_dict:
+            return_str += "{0} {1}\n".format(key, dates_dict[key])
     return return_str
 
 def top_three(file_name):
